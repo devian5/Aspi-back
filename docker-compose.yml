@@ -1,0 +1,25 @@
+version: "3.5"
+services: 
+  api:
+      build: ./api
+      volumes:
+        - ./api:/api
+        - /api/node_modules
+      ports:
+        - 3000:3000
+      depends_on:
+        - mongo 
+      env_file:
+        - .env  
+      # environment:
+      #   MONGO_SERVER: mongodb://mongo:27017/wmo
+  mongo:
+    image: mongo
+    restart: always
+    ports: 
+      - 27017:27017
+    container_name: db
+    volumes: 
+      - ~/mongo/data:/data/db
+    logging:
+      driver: none
