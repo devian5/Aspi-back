@@ -14,6 +14,25 @@ const createHandler = async (req,res) => {
     }
 };
 
+const loginHandler = async (req,res) => {
+    try {
+        const {email,password} = req.body;
+        const jwt = await userController.login(email,password);
+        const token = jwt.token;
+        console.log(token,'TOOOOKEN!<=====================');
+        const user = jwt.user;
+        console.log(user,'USEEER!<========================');
+        res.json({token,user, date: new Date});
+    } catch (error) {
+        return res.status(401).json({
+            message: error.message
+        });
+    };    
+};
+
+
 router.post('/', createHandler);
+router.post('/login', loginHandler);
+
 
 module.exports = router;
