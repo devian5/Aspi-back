@@ -10,8 +10,10 @@ const createHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error); 
-    }
+        return res.status(500).json({
+            message: error.message
+        });
+    };
 };
 
 const loginHandler = async (req,res) => {
@@ -38,7 +40,9 @@ const updateHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error);  
+        return res.status(500).json({
+            message: error.message
+        });
     };
 };
 
@@ -49,7 +53,9 @@ const deleteHandler = async (req,res) => {
 
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error);   
+        return res.status(500).json({
+            message: error.message
+        });   
     };
 };
 
@@ -59,13 +65,24 @@ const userAllHandler = async (req,res) => {
         
         res.json({result,date: new Date});
     } catch (error) {
-        console.log(error); 
+        return res.status(500).json({
+            message: error.message
+        });
     };
 
 };
 
-
-
+const searchByIdHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await userController.searchById(id);
+        res.json({result,date: new Date});
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message
+        });
+    };
+};
 
 
 router.post('/', createHandler);
@@ -73,9 +90,6 @@ router.post('/login', loginHandler);
 router.put('/:id', updateHandler);
 router.delete('/:id', deleteHandler);
 router.get('/', userAllHandler);
-
-
-
-
+router.get('/:id', searchByIdHandler);
 
 module.exports = router;
