@@ -18,10 +18,10 @@ const loginHandler = async (req,res) => {
     try {
         const {email,password} = req.body;
         const jwt = await userController.login(email,password);
+        
         const token = jwt.token;
-        console.log(token,'TOOOOKEN!<=====================');
         const user = jwt.user;
-        console.log(user,'USEEER!<========================');
+
         res.json({token,user, date: new Date});
     } catch (error) {
         return res.status(401).json({
@@ -30,9 +30,24 @@ const loginHandler = async (req,res) => {
     };    
 };
 
+const updateHandler = async (req,res) => {
+    try {
+        const updateUser = req.body;
+        const id = req.params.id
+        const result = await userController.update(id,updateUser);
+
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error);  
+    };
+};
+
+
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
+router.put('/:id', updateHandler);
+
 
 
 module.exports = router;

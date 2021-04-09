@@ -26,7 +26,12 @@ class UserController {
     const token = jwt.sign(payload, secret);
     return {token, user}
     
-  }
+  };
+
+  async update(id,user) {
+    return User.findByIdAndUpdate(id,user);
+  };
+
 
 
 };
