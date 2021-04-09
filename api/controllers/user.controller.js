@@ -32,7 +32,9 @@ class UserController {
     return User.findByIdAndUpdate(id,user);
   };
 
-
+  async delete(id) {
+    return User.findByIdAndRemove(id);
+  };
 
 };
 

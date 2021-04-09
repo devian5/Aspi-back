@@ -42,11 +42,25 @@ const updateHandler = async (req,res) => {
     };
 };
 
+const deleteHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await userController.delete(id);
+
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error);   
+    };
+};
+
+
 
 
 router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.put('/:id', updateHandler);
+router.delete('/:id', deleteHandler);
+
 
 
 
