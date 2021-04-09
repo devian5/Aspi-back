@@ -36,6 +36,10 @@ class UserController {
     return User.findByIdAndRemove(id);
   };
 
+  async userAll(allUser) {
+    return User.find(allUser);
+  };
+
 };
 
 const userController = new UserController;

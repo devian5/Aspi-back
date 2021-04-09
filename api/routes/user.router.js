@@ -53,6 +53,18 @@ const deleteHandler = async (req,res) => {
     };
 };
 
+const userAllHandler = async (req,res) => {
+    try {
+        const result = await userController.userAll();
+        
+        res.json({result,date: new Date});
+    } catch (error) {
+        console.log(error); 
+    };
+
+};
+
+
 
 
 
@@ -60,6 +72,8 @@ router.post('/', createHandler);
 router.post('/login', loginHandler);
 router.put('/:id', updateHandler);
 router.delete('/:id', deleteHandler);
+router.get('/', userAllHandler);
+
 
 
 
