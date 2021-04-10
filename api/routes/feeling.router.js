@@ -42,6 +42,20 @@ const searchFeelingByNameHandler = async (req,res) => {
     };
 };
 
+const searchByIdHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await feelingController.searchById(id);
+        
+        res.json({result,date: new Date});
+    } catch (error) {
+        
+        return res.status(500).json({
+            message: error.message
+        });
+    };
+};
+
 const updateHandler = async (req,res) => {
     try {
         const updateFeeling = req.body;
@@ -61,9 +75,9 @@ const updateHandler = async (req,res) => {
 router.post('/', createHandler);
 router.get('/', feelingAllHandler);
 router.get('/search', searchFeelingByNameHandler);
+router.get('/:id', searchByIdHandler);
 router.put('/:id', updateHandler);
 // router.delete('/:id', deleteHandler);
 // router.get('/', feelingAllHandler);
-// router.get('/:id', searchByIdHandler);
 
 module.exports = router;

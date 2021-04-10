@@ -14,10 +14,13 @@ class FeelingController {
         return Feeling.findOne(feeling);
     };
 
+    async searchById(id) {
+        return Feeling.findById(id);
+    };
+
     async update(id,feeling) {
         return Feeling.findByIdAndUpdate(id,feeling);
-      };
-    
+    };
 
 };
 
