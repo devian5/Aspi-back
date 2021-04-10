@@ -71,13 +71,27 @@ const updateHandler = async (req,res) => {
     };
 };
 
+const deleteHandler = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const result = await feelingController.delete(id);
+
+        res.json({result,date: new Date});
+    } catch (error) {
+
+        return res.status(500).json({
+            message: error.message
+        });   
+    };
+};
+
+
 
 router.post('/', createHandler);
 router.get('/', feelingAllHandler);
 router.get('/search', searchFeelingByNameHandler);
 router.get('/:id', searchByIdHandler);
 router.put('/:id', updateHandler);
-// router.delete('/:id', deleteHandler);
-// router.get('/', feelingAllHandler);
+router.delete('/:id', deleteHandler);
 
 module.exports = router;

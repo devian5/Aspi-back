@@ -22,6 +22,10 @@ class FeelingController {
         return Feeling.findByIdAndUpdate(id,feeling);
     };
 
+    async delete(id) {
+        return Feeling.findByIdAndRemove(id);
+    };
+    
 };
 
 const feelingController = new FeelingController;
