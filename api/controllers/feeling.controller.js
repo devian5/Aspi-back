@@ -10,6 +10,10 @@ class FeelingController {
         return Feeling.find(feeling);
     };
 
+    async searchFeelingByName(feeling){
+        return Feeling.findOne(feeling);
+    };
+
 };
 
 const feelingController = new FeelingController;
