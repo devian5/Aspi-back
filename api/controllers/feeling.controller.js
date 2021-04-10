@@ -14,6 +14,11 @@ class FeelingController {
         return Feeling.findOne(feeling);
     };
 
+    async update(id,feeling) {
+        return Feeling.findByIdAndUpdate(id,feeling);
+      };
+    
+
 };
 
 const feelingController = new FeelingController;
