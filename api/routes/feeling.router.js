@@ -5,7 +5,7 @@ const Feeling = require('../models/feeling.model');
 const createHandler = async (req,res) => {
     try {
         const newFeeling = new Feeling(req.body);
-        const result = feelingController.create(newFeeling);
+        const result = await feelingController.create(newFeeling);
 
         res.json({result,date: new Date});
     } catch (error) {
@@ -18,7 +18,7 @@ const createHandler = async (req,res) => {
 
 const feelingAllHandler = async (req,res) => {
     try {
-        const result = feelingController.feelingAll();
+        const result = await feelingController.feelingAll();
         
         res.json({result,date: new Date});
     } catch (error) {
@@ -31,7 +31,7 @@ const feelingAllHandler = async (req,res) => {
 
 const searchFeelingByNameHandler = async (req,res) => {
     try {
-        const result = feelingController.searchFeelingByName(req.body);
+        const result = await feelingController.searchFeelingByName(req.body);
         
         res.json({result,date: new Date});
     } catch (error) {
