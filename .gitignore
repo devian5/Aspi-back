@@ -2,3 +2,4 @@ node_modules/
 .env
 db.json
 db2.json
+db3.json
